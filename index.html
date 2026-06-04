@@ -3,157 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>日常漫遊 · 雙北捷運智慧時空行程規劃</title>
+    <title>台北漫遊提案 · Curated Smart Guide</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="phone-wrapper">
         
+        <!-- ✨ 新增：語系切換列 -->
+        <div class="lang-switcher-bar">
+            <button onclick="changeLanguage('zh')">繁中</button>
+            <button onclick="changeLanguage('en')">EN</button>
+            <button onclick="changeLanguage('ja')">JA</button>
+            <button onclick="changeLanguage('ko')">KO</button>
+        </div>
+        
         <!-- ================= PAGE 1：首頁 ================= -->
         <section id="page-home" class="page active">
             <div class="welcome-section">
-                <h1 class="main-title">日常漫遊</h1>
-                <p class="intro-text">放慢腳步，今天想用什麼樣的靈魂狀態<br>去探索雙北捷運線？</p>
+                <h1 class="main-title" data-i18n="main_title">日常漫遊</h1>
+                <p class="intro-text" data-i18n="intro_text">TAIPEI METRO TRAVEL PROTOCOL<br>專為外國自由行旅客打造的捷運策展式行程規劃</p>
             </div>
             
             <div class="menu-options">
-                <div class="nav-card" onclick="switchPage('page-select')">
-                    <div class="card-title">定向漫遊 · 全功能規劃</div>
-                    <div class="card-desc">自訂起訖站點與多心情主題，生成智慧時間軸行程</div>
-                </div>
-                
-                <div class="nav-card" onclick="openRandomPage()">
-                    <div class="card-title">靈感盲盒 · 隨機排程</div>
-                    <div class="card-desc">設定時間，讓命運為你拼湊一場未知的捷運探險</div>
+                <div class="nav-card" onclick="switchPage('page-select')" style="padding: 35px 20px; text-align: center;">
+                    <div class="card-title" style="font-size: 18px; margin-bottom: 8px;" data-i18n="start_btn">🚀 開始我的台北一日策展</div>
+                    <div class="card-desc" data-i18n="start_desc">依據旅行風格，一鍵生成無縫銜接的智慧時間軸</div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= PAGE 2A：多選定向設定頁 ================= -->
+        <!-- ================= PAGE 2：主題設定頁 ================= -->
         <section id="page-select" class="page">
             <div class="page-header">
-                <button class="btn-back" onclick="switchPage('page-home')">返回</button>
-                <h2 class="page-title">漫遊時空設定</h2>
+                <button class="btn-back" onclick="switchPage('page-home')" data-i18n="back">返回</button>
+                <h2 class="page-title" data-i18n="page_title">旅行風格探索</h2>
             </div>
             
-            <div class="route-station-container">
-                <div class="route-field">
-                    <label class="form-label" style="margin:0;">🛫 出發起點站</label>
-                    <select id="select-start-station">
-                        <!-- 由 JS 動態補齊 -->
-                    </select>
-                </div>
-                <div class="route-field">
-                    <label class="form-label" style="margin:0;">🛬 解散終點站</label>
-                    <select id="select-end-station">
-                        <!-- 由 JS 動態補齊 -->
-                    </select>
+            <!-- 模式選擇頁籤 -->
+            <div class="form-label" data-i18n="step_1">🛠️ 第一步：選擇規劃模式</div>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button id="mode-btn-curated" onclick="toggleMode('curated')" style="flex:1; padding: 12px; background: #b89f93; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;" data-i18n="mode_curated">模式一：經典策展主題</button>
+                <button id="mode-btn-custom" onclick="toggleMode('custom')" style="flex:1; padding: 12px; background: #faf9f5; color: #666; border: 1px solid #edebe4; border-radius: 10px; font-weight: bold; cursor: pointer;" data-i18n="mode_custom">模式二：自選站點自由行</button>
+            </div>
+
+            <!-- 功能一：策展包選單 -->
+            <div id="wrapper-curated" class="mode-wrapper-block">
+                <div class="form-label" data-i18n="select_theme_label">🎯 請選擇推薦主題路線（Demo 首選）</div>
+                <select id="select-curated-theme" style="width: 100%; font-weight: bold; color: #617180; background: #fff; border-color: #b89f93; margin-bottom: 15px;">
+                    <!-- 選單文字會由 JS 動態依語系切換 -->
+                </select>
+            </div>
+
+            <!-- 功能二：自選經過站 -->
+            <div id="wrapper-custom" class="mode-wrapper-block" style="display: none;">
+                <div class="form-label" data-i18n="select_stations_label">📍 請勾選您今天想去的捷運站點（自由行 DIY 模式）</div>
+                <div class="station-grid-container" id="station-checkbox-group">
+                    <!-- 由 JS 動態生成 18 個豐富站點 -->
                 </div>
             </div>
 
-            <div class="form-label" style="margin-top: 15px;">📍 想要順路經過的中間站（可複選）</div>
-            <div class="station-grid-container" id="station-checkbox-group">
-                <!-- 由 JS 動態生成 -->
+            <!-- 固定的時間選擇器 -->
+            <div class="form-label" data-i18n="select_time_label">⏱️ 設定出發時間流（固定格式，免手動打字）</div>
+            <div class="time-picker-row" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #faf9f5; padding: 15px; border-radius: 14px; border: 1px solid #edebe4;">
+                <span style="font-size: 14px; font-weight: bold; color: #666;" data-i18n="depart_time">預計出發：</span>
+                
+                <select id="time-select-hour" style="width: 70px; padding: 8px; text-align: center; border-radius: 8px; font-weight: bold; background: #fff;">
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09" selected>09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                </select>
+                
+                <span style="font-size: 18px; font-weight: bold; color: #b89f93;">:</span>
+                
+                <select id="time-select-minute" style="width: 70px; padding: 8px; text-align: center; border-radius: 8px; font-weight: bold; background: #fff;">
+                    <option value="00" selected>00</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                </select>
             </div>
 
-            <div class="form-label" style="margin-top: 15px;">⏱️ 設定漫遊時間軸（請用鍵盤直接輸入，例如 12:00）</div>
-            <div class="time-input-container">
-                <div class="time-field">
-                    <label>開始漫遊時間</label>
-                    <input type="text" id="select-start-time" value="12:00" placeholder="12:00" maxlength="5">
-                </div>
-                <div class="time-field">
-                    <label>預計回程時間</label>
-                    <input type="text" id="select-end-time" value="20:00" placeholder="20:00" maxlength="5">
-                </div>
-            </div>
-
-            <div class="form-label" style="margin-top: 15px;">💰 選擇人均消費級距</div>
-            <div class="budget-selector-grid">
-                <div class="budget-item">
-                    <input type="radio" name="select-budget" id="sb1" value="低預算" checked>
-                    <label for="sb1" class="budget-label">低預算<br><span>500 TWD 以下</span></label>
-                </div>
-                <div class="budget-item">
-                    <input type="radio" name="select-budget" id="sb2" value="中預算">
-                    <label for="sb2" class="budget-label">中預算<br><span>500 - 1000 TWD</span></label>
-                </div>
-                <div class="budget-item">
-                    <input type="radio" name="select-budget" id="sb3" value="高預算">
-                    <label for="sb3" class="budget-label">高預算<br><span>1000 TWD 以上</span></label>
-                </div>
-            </div>
-
-            <div class="form-label" style="margin-top: 15px;">☕ 選擇想體驗的心情主題（可多選框）</div>
-            <div class="theme-pill-grid">
-                <div class="pill-item"><input type="checkbox" name="themes" id="t1" value="靜謐獨處" checked><label for="t1" class="pill-label">靜謐獨處</label></div>
-                <div class="pill-item"><input type="checkbox" name="themes" id="t2" value="文青拍照"><label for="t2" class="pill-label">文青拍照</label></div>
-                <div class="pill-item"><input type="checkbox" name="themes" id="t3" value="美食尋味" checked><label for="t3" class="pill-label">美食尋味</label></div>
-                <div class="pill-item"><input type="checkbox" name="themes" id="t4" value="自然慢活" checked><label for="t4" class="pill-label">自然慢活</label></div>
-                <div class="pill-item"><input type="checkbox" name="themes" id="t5" value="老派懷舊"><label for="t5" class="pill-label">老派懷舊</label></div>
-            </div>
-
-            <button class="btn-action" onclick="generateCustomRoute()">生成我的慢漫提案</button>
+            <button class="btn-action" onclick="generateCuratedOrCustomRoute()" style="margin-top: 30px;" data-i18n="generate_btn">一鍵生成智慧漫遊行程</button>
         </section>
 
-        <!-- ================= PAGE 2B：隨機盲盒排程頁 ================= -->
-        <section id="page-random" class="page">
-            <div class="page-header">
-                <button class="btn-back" onclick="switchPage('page-home')">返回</button>
-                <h2 class="page-title">靈感盲盒開獎</h2>
-            </div>
-            
-            <div class="form-label">選擇想要漫遊的探險站點數量</div>
-            <select id="random-count-select" style="margin-bottom: 15px;">
-                <option value="1">前往 1 個神祕未知站點</option>
-                <option value="2">串聯 2 個神祕站點一日遊</option>
-                <option value="3">挑戰 3 個神祕站點深度漫遊</option>
-            </select>
-
-            <div class="form-label">設定漫遊時間流（請用鍵盤直接輸入）</div>
-            <div class="time-input-container" style="margin-bottom: 20px;">
-                <div class="time-field">
-                    <label>開始漫遊時間</label>
-                    <input type="text" id="random-start-time" value="12:00" placeholder="12:00" maxlength="5">
-                </div>
-                <div class="time-field">
-                    <label>預計回程時間</label>
-                    <input type="text" id="random-end-time" value="21:00" placeholder="21:00" maxlength="5">
-                </div>
-            </div>
-
-            <div class="form-label">選擇希望的消費範圍</div>
-            <div class="budget-selector-grid" style="margin-bottom: 25px;">
-                <div class="budget-item">
-                    <input type="radio" name="random-budget" id="rb1" value="低預算" checked>
-                    <label for="rb1" class="budget-label">低預算<br><span>500 TWD 以下</span></label>
-                </div>
-                <div class="budget-item">
-                    <input type="radio" name="random-budget" id="rb2" value="中預算">
-                    <label for="rb2" class="budget-label">中預算<br><span>500 - 1000 TWD</span></label>
-                </div>
-                <div class="budget-item">
-                    <input type="radio" name="random-budget" id="rb3" value="高預算">
-                    <label for="rb3" class="budget-label">高預算<br><span>1000 TWD 以上</span></label>
-                </div>
-            </div>
-            
-            <div class="slot-container" style="margin: 20px 0;">
-                <div class="slot-window" id="slot-station" style="font-size: 16px;">？</div>
-            </div>
-
-            <button class="btn-action" onclick="startSlotMachine()">啟動隨機靈感排程</button>
-        </section>
-
-        <!-- ================= PAGE 3：結果排程展示頁 ================= -->
+        <!-- ================= PAGE 3：結果展示頁 ================= -->
         <section id="page-result" class="page">
             <div class="page-header">
-                <button class="btn-back" id="result-back-btn" onclick="switchPage('page-home')">返回修改</button>
-                <h2 class="page-title">專屬日常提案</h2>
+                <button class="btn-back" id="result-back-btn" onclick="switchPage('page-select')" data-i18n="modify_btn">返回修改</button>
+                <h2 class="page-title" data-i18n="result_title">台北漫遊時空指南</h2>
             </div>
             <div id="result-list-container">
-                <!-- JS 動態生成包含時間與路徑的卡片 -->
+                <!-- JS 動態生成 -->
             </div>
         </section>
 
