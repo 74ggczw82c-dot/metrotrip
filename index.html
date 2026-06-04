@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>日常漫遊</title>
+    <title>日常漫遊 · 雙北捷運智慧時空行程規劃</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,21 +20,21 @@
             <div class="menu-options">
                 <div class="nav-card" onclick="switchPage('page-select')">
                     <div class="card-title">定向漫遊 · 全功能規劃</div>
-                    <div class="card-desc">自訂起訖站點與多主題，生成智慧時間軸行程</div>
+                    <div class="card-desc">自訂起訖站點與多心情主題，生成智慧時間軸行程</div>
                 </div>
                 
                 <div class="nav-card" onclick="openRandomPage()">
                     <div class="card-title">靈感盲盒 · 隨機排程</div>
-                    <div class="card-desc">選擇預算與站點數量，交給命運規劃一日遊</div>
+                    <div class="card-desc">設定時間，讓命運為你拼湊一場未知的捷運探險</div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= PAGE 2A：多選設定頁 ================= -->
+        <!-- ================= PAGE 2A：多選定向設定頁 ================= -->
         <section id="page-select" class="page">
             <div class="page-header">
                 <button class="btn-back" onclick="switchPage('page-home')">返回</button>
-                <h2 class="page-title">探索設定</h2>
+                <h2 class="page-title">漫遊時空設定</h2>
             </div>
             
             <div class="route-station-container">
@@ -52,25 +52,24 @@
                 </div>
             </div>
 
-            <div class="form-label" style="margin-top: 15px;">📍 想經過的中間站（可複選）</div>
+            <div class="form-label" style="margin-top: 15px;">📍 想要順路經過的中間站（可複選）</div>
             <div class="station-grid-container" id="station-checkbox-group">
                 <!-- 由 JS 動態生成 -->
             </div>
 
-            <!-- ✨ 優化：改為 text 格式，讓使用者可一鍵點擊用鍵盤直接打字輸入 -->
-            <div class="form-label" style="margin-top: 15px;">⏱️ 設定漫遊時間流（請直接打字輸入，如 12:00）</div>
+            <div class="form-label" style="margin-top: 15px;">⏱️ 設定漫遊時間軸（請用鍵盤直接輸入，例如 12:00）</div>
             <div class="time-input-container">
                 <div class="time-field">
-                    <label>出發時間</label>
+                    <label>開始漫遊時間</label>
                     <input type="text" id="select-start-time" value="12:00" placeholder="12:00" maxlength="5">
                 </div>
                 <div class="time-field">
-                    <label>結束回程</label>
+                    <label>預計回程時間</label>
                     <input type="text" id="select-end-time" value="20:00" placeholder="20:00" maxlength="5">
                 </div>
             </div>
 
-            <div class="form-label" style="margin-top: 15px;">💰 選擇人均預算範圍</div>
+            <div class="form-label" style="margin-top: 15px;">💰 選擇人均消費級距</div>
             <div class="budget-selector-grid">
                 <div class="budget-item">
                     <input type="radio" name="select-budget" id="sb1" value="低預算" checked>
@@ -86,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="form-label" style="margin-top: 15px;">☕ 選擇想體驗的多個主題（可多選）</div>
+            <div class="form-label" style="margin-top: 15px;">☕ 選擇想體驗的心情主題（可多選框）</div>
             <div class="theme-pill-grid">
                 <div class="pill-item"><input type="checkbox" name="themes" id="t1" value="靜謐獨處" checked><label for="t1" class="pill-label">靜謐獨處</label></div>
                 <div class="pill-item"><input type="checkbox" name="themes" id="t2" value="文青拍照"><label for="t2" class="pill-label">文青拍照</label></div>
@@ -102,30 +101,29 @@
         <section id="page-random" class="page">
             <div class="page-header">
                 <button class="btn-back" onclick="switchPage('page-home')">返回</button>
-                <h2 class="page-title">靈感盲盒</h2>
+                <h2 class="page-title">靈感盲盒開獎</h2>
             </div>
             
-            <div class="form-label">選擇想要漫遊的站點數量</div>
+            <div class="form-label">選擇想要漫遊的探險站點數量</div>
             <select id="random-count-select" style="margin-bottom: 15px;">
-                <option value="1">前往 1 個神祕站點</option>
-                <option value="2">串聯 2 個神祕站點</option>
-                <option value="3">挑戰 3 個神祕站點一日遊</option>
+                <option value="1">前往 1 個神祕未知站點</option>
+                <option value="2">串聯 2 個神祕站點一日遊</option>
+                <option value="3">挑戰 3 個神祕站點深度漫遊</option>
             </select>
 
-            <!-- ✨ 優化：盲盒時間同樣改為直接打字輸入 -->
-            <div class="form-label">設定漫遊時間流（請直接打字輸入）</div>
+            <div class="form-label">設定漫遊時間流（請用鍵盤直接輸入）</div>
             <div class="time-input-container" style="margin-bottom: 20px;">
                 <div class="time-field">
-                    <label>出發時間</label>
+                    <label>開始漫遊時間</label>
                     <input type="text" id="random-start-time" value="12:00" placeholder="12:00" maxlength="5">
                 </div>
                 <div class="time-field">
-                    <label>結束回程</label>
+                    <label>預計回程時間</label>
                     <input type="text" id="random-end-time" value="21:00" placeholder="21:00" maxlength="5">
                 </div>
             </div>
 
-            <div class="form-label">選擇人均預算範圍</div>
+            <div class="form-label">選擇希望的消費範圍</div>
             <div class="budget-selector-grid" style="margin-bottom: 25px;">
                 <div class="budget-item">
                     <input type="radio" name="random-budget" id="rb1" value="低預算" checked>
@@ -148,13 +146,14 @@
             <button class="btn-action" onclick="startSlotMachine()">啟動隨機靈感排程</button>
         </section>
 
-        <!-- ================= PAGE 3：結果頁 ================= -->
+        <!-- ================= PAGE 3：結果排程展示頁 ================= -->
         <section id="page-result" class="page">
             <div class="page-header">
                 <button class="btn-back" id="result-back-btn" onclick="switchPage('page-home')">返回修改</button>
+                <h2 class="page-title">專屬日常提案</h2>
             </div>
             <div id="result-list-container">
-                <!-- JS 動態生成 -->
+                <!-- JS 動態生成包含時間與路徑的卡片 -->
             </div>
         </section>
 
