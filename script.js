@@ -79,7 +79,7 @@ const routeTwoDatabase = {
 const uiTranslations = {
     zh: {
         main_title: "日常漫遊", start_btn: "🚀 開始我的台北一日策展", start_desc: "探索無縫銜接的時空大數據行程",
-        login_card_title: "🔐 解鎖會員專專屬足跡功能", login_card_desc: "登入後可記錄踩點足跡，並享智慧過濾推薦",
+        login_card_title: "🔐 解鎖會員專屬足跡功能", login_card_desc: "登入後可記錄踩點足跡，並享智慧過濾推薦",
         page_title: "旅行風格探索", back: "返回", step_1: "🛠️ 第一步：選擇規劃模式",
         mode_curated: "模式一：經典策展主題", mode_custom: "模式二：自選站點自由行",
         select_theme_label: "🎯 請選擇推薦主題路線（Demo 首選）", select_stations_label: "📍 請勾選您今天想去的捷運站點（自由行 DIY 模式）",
@@ -95,7 +95,7 @@ const uiTranslations = {
         fake_2: "【自然秘境】北投溫泉與陽明山花卉療癒日常 (近郊慢活線)",
         fake_3: "【親子同樂】市立動物園與貓空茶香高空體驗 (家族漫遊線)",
         transit_r1_0: "搭乘 <strong>淡水信義線（紅線）</strong> 直達東門站，車程約 1 站，耗時約 6 分鐘。",
-        transit_r1_1: "繼續搭乘 <strong>淡水信義線（紅線）</strong> 直達台北101/世貿站，車程約 3 站，耗時約 9 分鐘。",
+        transit_r1_1: "繼續搭乘 <strong>淡水信義線（紅線）</strong> 直達台北101/世擺站，車程約 3 站，耗時約 9 分鐘。",
         transit_r1_2: "順著信義徒步區空中連廊 <strong>直接步行</strong> 逛至市政府商圈，路程約 8 分鐘。",
         transit_r1_3: "由市政府站搭乘 <strong>板南線（藍線）</strong> 至西門站，轉乘 <strong>松山新店線（綠線）</strong> 直達終點松山站並步行抵達饒河夜市，總車程約 20 分鐘。",
         transit_r2_0: "從龍山寺 <strong>直接步行</strong> 前往剝皮寮歷史街區（約 3 分鐘），隨後由龍山寺站搭乘 <strong>板南線（藍線）</strong> 僅 1 站直達西門站，車程約 8 分鐘。",
@@ -128,10 +128,60 @@ const uiTranslations = {
         transit_r2_1: "Take <strong>Songshan-Xindien Line (Green)</strong> north to <strong>Beimen Station</strong>, then walk to Dihua Street. Total approx. 12 mins.",
         transit_r2_2: "Walk west from Dihua Street toward the riverfront to arrive seamlessly at the pier sunset. Approx. 8 mins.",
         transit_r2_3: "After twilight, head east along Minsheng West Road straight to Ningxia Night Market. Approx. 12 mins."
+    },
+    ja: {
+        main_title: "台北マイペース旅", start_btn: "🚀 台北のスマート旅程を作成", start_desc: "シームレスにリンクされた時空間データルートを探索する",
+        login_card_title: "🔐 会員専用の足跡機能をアンロック", login_card_desc: "ログインすると訪問済みのスポットを記録でき、おすすめから自動除外されます。",
+        page_title: "旅行スタイルの選択", back: "戻る", step_1: "🛠️ ステップ 1：プランニングモードの選択",
+        mode_curated: "モード①：定番おすすめテーマ", mode_custom: "モード②：駅選択自由プラン",
+        select_theme_label: "🎯 厳選おすすめルートを選択（Demo 推奨）", select_stations_label: "📍 本日訪問したい駅にチェックを入れてください（DIY モード）",
+        select_time_label: "⏱️ 出発時間の設定（ダイヤル選択式、手入力不要）", depart_time: "出発予定：",
+        generate_btn: "AI 旅程を自動生成する", modify_btn: "条件を変更", result_title: "台北タイムライン案内帳",
+        transit_header: "Google マップ実測移動時間推計：", cost_prefix: "予想費用：", map_nav: "マップでナビを開く →",
+        auth_title: "旅人アカウントセンター", username: "ユーザー名", password: "パスワード",
+        login_btn: "ログイン", register_btn: "新規登録", history_title: "マイ台北足跡マップ", history_subtitle: "以下はあなたが「訪問済み」とマークした定番の観光スポットです：",
+        visited_btn_text: "📍 訪問済み",
+        theme_1: "【王道定番】最先端ランドマークと必食グルメ一日旅 (中正/101/饒河)",
+        theme_2: "【レトロ巡り】萬華老街風情と絶品リバーサイドの夕日 (龍山寺/大稻埕/寧夏)",
+        fake_1: "【文青散策】セレクトショップと赤峰街路地裏カフェ巡り (現代美学線)",
+        fake_2: "【自然秘境】北投温泉と陽明山のんびりフラワーヒーリング (近郊癒やし線)",
+        fake_3: "【親子同楽】台北市立動物園と猫空お茶香るロープウェイ体験 (家族のんびり線)",
+        transit_r1_0: "<strong>淡水信義線（赤線）</strong>に乗り、東門駅へ直行。乗車時間約 6 分。",
+        transit_r1_1: "引き続き<strong>淡水信義線（赤線）</strong>で台北101/世貿駅へ。乗車時間約 9 分。",
+        transit_r1_2: "信義歩行者天国の空中回廊を通って市政府エリアへ直接徒歩で移動。徒歩約 8 分。",
+        transit_r1_3: "市政府駅から<strong>板南線（青線）</strong>で西門駅へ行き、<strong>松山新店線（緑線）</strong>に乗り換えて松山駅へ。計約 20 分。",
+        transit_r2_0: "剝皮寮歴史地区へ徒歩で移動したのち、龍山寺駅から<strong>板南線（青線）</strong>に乗り1駅で西門駅に到着。約 8 分。",
+        transit_r2_1: "西門駅から<strong>松山新店線（緑線）</strong>で<strong>北門駅</strong>へ行き、下車後迪化街へ歩きます。計約 12 分。",
+        transit_r2_2: "迪化街の老舗街から西側の岸辺へ向かって歩くと、すぐに埠頭へ到着します。徒歩約 8 分。",
+        transit_r2_3: "夕暮れ後、民生西路を東へまっすぐ歩くと、寧夏夜市に到着します。徒歩約 12 分。"
+    },
+    ko: {
+        main_title: "타이베이 시공간 가이드", start_btn: "🚀 타이베이 일일 큐레이션 시작", start_desc: "매끄럽게 연결되는 시공간 빅데이터 일정을 탐색하세요",
+        login_card_title: "🔐 회원 전용 발자국 기능 활성화", login_card_desc: "로그인 후 방문한 명소를 기록하고 스마트 제외 추천을 받아보세요.",
+        page_title: "여행 스타일 탐색", back: "조건 수정", step_1: "🛠️ 첫 번째 단계: 계획 모드 선택",
+        mode_curated: "모드 1: 클래식 추천 테마", mode_custom: "모드 2: 지하철역 직접 선택",
+        select_theme_label: "🎯 추천 테마 코스를 선택하세요 (Demo 강력 추천)", select_stations_label: "📍 오늘 방문하고 싶은 지하철역을 선택하세요 (DIY 자유 모드)",
+        select_time_label: "⏱️ 출발 시간 설정 (키패드 입력 없이 간편한 선택식)", depart_time: "출발 예정:",
+        generate_btn: "스마트 시간축 일정 생성", modify_btn: "조건 수정", result_title: "타이베이 시공간 여행 가이드",
+        transit_header: "Google 지도 기반 실제 교통 소요 시간 계산:", cost_prefix: "예상 비용: ", map_nav: "구글 지도 내비게이션 켜기 →",
+        auth_title: "여행자 계정 센터", username: "아이디", password: "비밀번호",
+        login_btn: "로그인", register_btn: "회원가입", history_title: "나의 타이베이 발자국 지도", history_subtitle: "다음은 내가 '방문함'으로 체크한 로컬 명소 목록입니다:",
+        visited_btn_text: "📍 방문했음",
+        theme_1: "【필수 코스】 트렌디 랜드마크와 필수 미식 일일 투어 (중정/101/라오허제)",
+        theme_2: "【레트로 감성】 만화 노포 감성과 환상적인 노을 유람 (룽산사/대도정/닝샤)",
+        fake_1: "【문학 산책】 독립 소품숍과 스청제 골목 카페 투어 (현대 미학선)",
+        fake_2: "【자연 비경】 베이터우 온천과 양명산 힐링 플라워 투어 (근교 힐링선)",
+        fake_3: "【가족 함께】 시립동물원과 마오콩 차향 스카이웨이 투어 (가족 유람선)",
+        transit_r1_0: "<strong>단수이신이선(빨간색)</strong>을 타고 둥먼역으로 직행. 이동 시간 약 6분 소요.",
+        transit_r1_1: "이어서 <strong>단수이신이선(빨간색)</strong>을 타고 타이베이101/세무역으로 직행. 약 9분 소요.",
+        transit_r1_2: "신이 쇼핑지구의 공중 화랑을 따라 시정부 상권으로 도보 이동. 도보 약 8분 소요.",
+        transit_r1_3: "시정부역에서 <strong>반난선(파란색)</strong> 탑승 후 시먼역에서 <strong>송산신이선(초록색)</strong>으로 환승하여 송산역 도착. 약 20분 소요.",
+        transit_r2_0: "보피랴오 골목을 걸은 뒤, 룽산사역에서 <strong>반난선(파란색)</strong>을 타고 1정거장 뒤 시먼역 하차. 약 8분 소요.",
+        transit_r2_1: "시먼역에서 <strong>송산신이선(초록색)</strong> 탑승 후 <strong>베이먼역</strong> 하차, 디화제로 도보 이동. 총 약 12분 소요.",
+        transit_r2_2: "디화제 노포 거리에서 서쪽 강변 방향으로 도보 이동 시 바로 대도정 부두에 도착. 도보 약 8분 소요.",
+        transit_r2_3: "일몰 후, 민성서로를 따라 동쪽 방향으로 쭉 걸어가면 닝샤 야시장 도착. 도보 약 12분 소요."
     }
 };
-uiTranslations.ja = uiTranslations.en;
-uiTranslations.ko = uiTranslations.en;
 
 function switchPage(pageId) {
     const pages = document.querySelectorAll('.page');
@@ -265,6 +315,7 @@ function changeLanguage(lang) {
     }
 }
 
+// 網頁初始化
 window.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('station-checkbox-group');
     if(!container) return;
@@ -396,7 +447,7 @@ function renderFinalResults(results, isRouteOne, isLanguageSwitching) {
     if (results.length === 0) {
         container.innerHTML = `
             <div style="text-align:center; padding: 40px; color:#9c9386; font-size:14px; background:#fff; border-radius:16px; border:1px solid #edebe4;">
-                📭 目前選擇的站點組合在資料庫中尚無推薦景點行程，請嘗試勾選其他站點（如：中正紀念堂、東門、北門、龍山寺、西門、市政府、松山）。
+                📭 目前選擇的站點組合在資料庫中尚無推薦景點行程，請嘗試勾選其他站點（如：中正紀念堂、東門、北門、龍山寺、西門、市政府shortcut）。
             </div>
         `;
         if (!isLanguageSwitching) switchPage('page-result');
