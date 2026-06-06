@@ -10,104 +10,113 @@
 
     <div class="phone-wrapper">
         
-        <!-- ✨ 新增：語系切換列 -->
         <div class="lang-switcher-bar">
+            <div id="auth-status-zone" style="font-size: 11px; font-weight: bold; color: #b89f93; margin-right: auto; display: flex; align-items: center; gap: 5px;">
+                </div>
             <button onclick="changeLanguage('zh')">繁中</button>
             <button onclick="changeLanguage('en')">EN</button>
             <button onclick="changeLanguage('ja')">JA</button>
             <button onclick="changeLanguage('ko')">KO</button>
         </div>
         
-        <!-- ================= PAGE 1：首頁 ================= -->
         <section id="page-home" class="page active">
-            <div class="welcome-section">
+            <div class="welcome-section" style="margin-top: 50px; margin-bottom: 30px;">
                 <h1 class="main-title" data-i18n="main_title">日常漫遊</h1>
-                <p class="intro-text" data-i18n="intro_text">TAIPEI METRO TRAVEL PROTOCOL<br>專為外國自由行旅客打造的捷運策展式行程規劃</p>
+                <p class="intro-text" style="margin-top: 15px;">TAIPEI METRO TRAVEL PROTOCOL</p>
             </div>
             
             <div class="menu-options">
-                <div class="nav-card" onclick="switchPage('page-select')" style="padding: 35px 20px; text-align: center;">
-                    <div class="card-title" style="font-size: 18px; margin-bottom: 8px;" data-i18n="start_btn">🚀 開始我的台北一日策展</div>
-                    <div class="card-desc" data-i18n="start_desc">依據旅行風格，一鍵生成無縫銜接的智慧時間軸</div>
+                <div class="nav-card" onclick="switchPage('page-select')">
+                    <div class="card-title" style="font-size: 16px; margin-bottom: 4px;" data-i18n="start_btn">🚀 開始我的台北一日策展</div>
+                    <div class="card-desc" data-i18n="start_desc">探索無縫銜接的時空大數據行程</div>
+                </div>
+                
+                <div id="home-auth-card" class="nav-card" onclick="switchPage('page-auth')" style="border-color: #b89f93; background: #faf9f5;">
+                    <div class="card-title" style="font-size: 15px; color: #b89f93;" data-i18n="login_card_title">🔐 解鎖會員專屬足跡功能</div>
+                    <div class="card-desc" data-i18n="login_card_desc">登入後可記錄踩點足跡，並享智慧過濾推薦</div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= PAGE 2：主題設定頁 ================= -->
+        <section id="page-auth" class="page">
+            <div class="page-header">
+                <button class="btn-back" onclick="switchPage('page-home')" data-i18n="back">返回</button>
+                <h2 class="page-title" data-i18n="auth_title">旅人帳戶中心</h2>
+            </div>
+            
+            <div style="background: #faf9f5; padding: 20px; border-radius: 16px; border: 1px solid #edebe4; display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
+                <div>
+                    <label class="form-label" style="margin:0 0 6px 0;" data-i18n="username">帳號 (Username)</label>
+                    <input type="text" id="auth-username" placeholder="Please enter account" style="width:100%; padding:12px; box-sizing:border-box; border-radius:10px; border:1px solid #e3e0d7; outline:none;">
+                </div>
+                <div>
+                    <label class="form-label" style="margin:0 0 6px 0;" data-i18n="password">密碼 (Password)</label>
+                    <input type="password" id="auth-password" placeholder="Please enter password" style="width:100%; padding:12px; box-sizing:border-box; border-radius:10px; border:1px solid #e3e0d7; outline:none;">
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button onclick="handleLogin()" style="flex:1; padding:14px; background:#617180; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;" data-i18n="login_btn">登入</button>
+                    <button onclick="handleRegister()" style="flex:1; padding:14px; background:#b89f93; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;" data-i18n="register_btn">註冊新帳號</button>
+                </div>
+            </div>
+        </section>
+
         <section id="page-select" class="page">
             <div class="page-header">
                 <button class="btn-back" onclick="switchPage('page-home')" data-i18n="back">返回</button>
                 <h2 class="page-title" data-i18n="page_title">旅行風格探索</h2>
             </div>
             
-            <!-- 模式選擇頁籤 -->
             <div class="form-label" data-i18n="step_1">🛠️ 第一步：選擇規劃模式</div>
             <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                 <button id="mode-btn-curated" onclick="toggleMode('curated')" style="flex:1; padding: 12px; background: #b89f93; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer;" data-i18n="mode_curated">模式一：經典策展主題</button>
                 <button id="mode-btn-custom" onclick="toggleMode('custom')" style="flex:1; padding: 12px; background: #faf9f5; color: #666; border: 1px solid #edebe4; border-radius: 10px; font-weight: bold; cursor: pointer;" data-i18n="mode_custom">模式二：自選站點自由行</button>
             </div>
 
-            <!-- 功能一：策展包選單 -->
             <div id="wrapper-curated" class="mode-wrapper-block">
                 <div class="form-label" data-i18n="select_theme_label">🎯 請選擇推薦主題路線（Demo 首選）</div>
                 <select id="select-curated-theme" style="width: 100%; font-weight: bold; color: #617180; background: #fff; border-color: #b89f93; margin-bottom: 15px;">
-                    <!-- 選單文字會由 JS 動態依語系切換 -->
-                </select>
+                    </select>
             </div>
 
-            <!-- 功能二：自選經過站 -->
             <div id="wrapper-custom" class="mode-wrapper-block" style="display: none;">
                 <div class="form-label" data-i18n="select_stations_label">📍 請勾選您今天想去的捷運站點（自由行 DIY 模式）</div>
                 <div class="station-grid-container" id="station-checkbox-group">
-                    <!-- 由 JS 動態生成 18 個豐富站點 -->
-                </div>
+                    </div>
             </div>
 
-            <!-- 固定的時間選擇器 -->
             <div class="form-label" data-i18n="select_time_label">⏱️ 設定出發時間流（固定格式，免手動打字）</div>
             <div class="time-picker-row" style="display: flex; align-items: center; justify-content: center; gap: 8px; background: #faf9f5; padding: 15px; border-radius: 14px; border: 1px solid #edebe4;">
                 <span style="font-size: 14px; font-weight: bold; color: #666;" data-i18n="depart_time">預計出發：</span>
-                
                 <select id="time-select-hour" style="width: 70px; padding: 8px; text-align: center; border-radius: 8px; font-weight: bold; background: #fff;">
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09" selected>09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
+                    <option value="07">07</option><option value="08">08</option><option value="09" selected>09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option>
                 </select>
-                
                 <span style="font-size: 18px; font-weight: bold; color: #b89f93;">:</span>
-                
                 <select id="time-select-minute" style="width: 70px; padding: 8px; text-align: center; border-radius: 8px; font-weight: bold; background: #fff;">
-                    <option value="00" selected>00</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
+                    <option value="00" selected>00</option><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="40">40</option><option value="50">50</option>
                 </select>
             </div>
 
             <button class="btn-action" onclick="generateCuratedOrCustomRoute()" style="margin-top: 30px;" data-i18n="generate_btn">一鍵生成智慧漫遊行程</button>
         </section>
 
-        <!-- ================= PAGE 3：結果展示頁 ================= -->
         <section id="page-result" class="page">
             <div class="page-header">
                 <button class="btn-back" id="result-back-btn" onclick="switchPage('page-select')" data-i18n="modify_btn">返回修改</button>
                 <h2 class="page-title" data-i18n="result_title">台北漫遊時空指南</h2>
             </div>
             <div id="result-list-container">
-                <!-- JS 動態生成 -->
+                </div>
+        </section>
+
+        <section id="page-history" class="page">
+            <div class="page-header">
+                <button class="btn-back" onclick="switchPage('page-home')" data-i18n="back">返回</button>
+                <h2 class="page-title" data-i18n="history_title">我的台北足跡地圖</h2>
             </div>
+            <p style="font-size: 12px; color:#9c9386; margin:0 0 15px 0;" data-i18n="history_subtitle">以下是您點擊打卡標記「我去過了」的經典觀光景點：</p>
+            <div id="history-list-container" style="display: flex; flex-direction: column; gap: 12px;">
+                </div>
         </section>
 
     </div>
